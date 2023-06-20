@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Forma {
+public:
+	virtual void dibujar() const = 0;
+};
+
+class Triangulo {
+public:
+	void dibujarTriangulo() const {
+		cout << "Dibujando un triángulo." << endl;
+	}
+};
+
+class TrianguloAdaptador : public Forma {
+private:
+	Triangulo triangulo;
+	
+public:
+	void dibujar() const override {
+		triangulo.dibujarTriangulo();
+	}
+};
+
+void dibujarForma(const Forma& forma) {
+	forma.dibujar();
+}
+
+int main() {
+	TrianguloAdaptador trianguloAdaptador;
+	dibujarForma(trianguloAdaptador);
+	
+	return 0;
+}
